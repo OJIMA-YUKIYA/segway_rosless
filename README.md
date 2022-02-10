@@ -1,11 +1,17 @@
-# ROSで SegwayRMP200 を動かす。
-動作環境はUbuntu18.04のOSが載っているPC
+# C++ (ROSなし) で SegwayRMP200 を動かす。
+動作環境 Ubuntu18.04
 ## コンパイル方法
-初めてコンパイルす場合、segway-main下のlibsegwayrmpをmakeコマンドで必ずコンパイルする。2回目以降は、libsegwayrmpのソースコードを変更しない限り、libsegwayrmpをコンパイルする必要はないので、2回目以降はスルーする。
+
+segway_rosless/ にて
+
 ```bash
-~/segway-main/libsegwayrmp $ make
+./compile.sh
 ```
-segway-main下で catkin_make によりコンパイルを行う。
+
+## 実行方法
+
+segway_rosless/ にて
+
 ```bash
-~/segway-main $ catkin_make
+./joystick_segway.sh
 ```
