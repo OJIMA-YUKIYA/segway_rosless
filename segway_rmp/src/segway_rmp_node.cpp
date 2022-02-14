@@ -452,6 +452,8 @@ public:
                 // boost::mutex::scoped_lock lock(this->m_mutex);
                 // ROS_INFO("keepAliveCallback");
 
+                printf("main loop\n");
+
                 Lavel la;
                 if (this->latch == 0) {
                     // if (ros::Time::now() - this->joy_arrival_time > ros::Duration(0.5)) {
