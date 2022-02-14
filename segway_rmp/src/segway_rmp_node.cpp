@@ -299,7 +299,7 @@ public:
         // this->odometry_reset_start_time = ros::Time::now();
 
         boost::thread th_momo_serial_read(&SegwayRMPNode::momo_serial_read, this);
-        boost::thread th_hoge(&SegwayRMPNode::hoge, this);
+        // boost::thread th_hoge(&SegwayRMPNode::hoge, this);
 
         this->connected = false;
         while (true) {
@@ -326,28 +326,28 @@ public:
         if (true && this->connected) {
             printf("Segway RMP Ready.\n");
             this->segway_rmp->resetAllIntegrators();
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setMaxVelocityScaleFactor(1.0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setMaxAccelerationScaleFactor(1.0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setMaxTurnScaleFactor(1.0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setCurrentLimitScaleFactor(1.0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setBalanceModeLocking(true);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setOperationalMode(segwayrmp::tractor);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             this->segway_rmp->setControllerGainSchedule(segwayrmp::heavy);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             // ros::Duration(0.05).sleep();
             // this->keep_alive_timer = this->n->createTimer(ros::Duration(dt), &SegwayRMPNode::keepAliveCallback, this);
             // ros::AsyncSpinner spinner(1);
@@ -496,7 +496,7 @@ public:
                     this->disconnect();
                 }
 
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 // ros::Duration(0.05).sleep();
             }
             // ros::Duration(100).sleep();
@@ -657,6 +657,7 @@ public:
         // }
         //
         this->linear_vel_feedback = (ss.left_wheel_speed + ss.right_wheel_speed) / 2.0;
+        printf("%lf\n", this->linear_vel_feedback);
         //
         // this->sss_msg.segway.pitch_angle = ss.pitch * degrees_to_radians;
         // this->sss_msg.segway.pitch_rate = ss.pitch_rate * degrees_to_radians;
