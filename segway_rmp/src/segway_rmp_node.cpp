@@ -299,7 +299,7 @@ public:
         // this->odometry_reset_start_time = ros::Time::now();
 
         boost::thread th_momo_serial_read(&SegwayRMPNode::momo_serial_read, this);
-        // boost::thread th_hoge(&SegwayRMPNode::hoge, this);
+        boost::thread th_hoge(&SegwayRMPNode::hoge, this);
 
         this->connected = false;
         while (true) {
