@@ -325,6 +325,7 @@ public:
     bool spin() {
         if (true && this->connected) {
             printf("Segway RMP Ready.\n");
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
             this->segway_rmp->resetAllIntegrators();
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
             // ros::Duration(0.05).sleep();
