@@ -299,6 +299,7 @@ public:
         // this->odometry_reset_start_time = ros::Time::now();
 
         boost::thread th_momo_serial_read(&SegwayRMPNode::momo_serial_read, this);
+        // boost::thread th_keep_alive_callback(&SegwayRMPNode::keep_alive_callback, this);
         // boost::thread th_hoge(&SegwayRMPNode::hoge, this);
 
         this->connected = false;
@@ -398,7 +399,7 @@ public:
                 // std::cout << "移動中・・・\n";
                 // ros::Duration(100).sleep();
 
-                boost::mutex::scoped_lock lock(this->m_mutex);
+                // boost::mutex::scoped_lock lock(this->m_mutex);
 
 
 
@@ -661,7 +662,7 @@ public:
         // }
         //
         this->linear_vel_feedback = (ss.left_wheel_speed + ss.right_wheel_speed) / 2.0;
-        printf("%lf\n", this->linear_vel_feedback);
+        // printf("%lf\n", this->linear_vel_feedback);
         //
         // this->sss_msg.segway.pitch_angle = ss.pitch * degrees_to_radians;
         // this->sss_msg.segway.pitch_rate = ss.pitch_rate * degrees_to_radians;
