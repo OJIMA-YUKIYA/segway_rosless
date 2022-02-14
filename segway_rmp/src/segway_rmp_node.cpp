@@ -402,7 +402,7 @@ public:
                 // boost::mutex::scoped_lock lock(this->m_mutex);
 
 
-
+                printf("this->connected %d\n", this->connected);
 
                 if (!this->connected || this->reset_odometry) {
                     continue;
