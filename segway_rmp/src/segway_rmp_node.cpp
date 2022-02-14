@@ -404,8 +404,6 @@ public:
                 // boost::mutex::scoped_lock lock(this->m_mutex);
 
 
-                printf("this->connected %d\n", this->connected);
-
                 if (!this->connected || this->reset_odometry) {
                     continue;
                 }
@@ -455,7 +453,7 @@ public:
                 // boost::mutex::scoped_lock lock(this->m_mutex);
                 // ROS_INFO("keepAliveCallback");
 
-                printf("main loop\n");
+                // printf("main loop\n");
 
                 Lavel la;
                 if (this->latch == 0) {
@@ -494,7 +492,7 @@ public:
                     if (this->obstacle_detected) {
                         this->lin = 0;
                     }
-                    printf("%lf, %lf\n", this->ang, this->lin);
+                    // printf("%lf, %lf\n", this->ang, this->lin);
                     this->segway_rmp->move(this->lin, this->ang); // add offset 0.03
                 } catch (std::exception& e) {
                     std::string e_msg(e.what());
@@ -664,7 +662,7 @@ public:
         // }
         //
         this->linear_vel_feedback = (ss.left_wheel_speed + ss.right_wheel_speed) / 2.0;
-        // printf("%lf\n", this->linear_vel_feedback);
+        printf("%lf\n", this->linear_vel_feedback);
         //
         // this->sss_msg.segway.pitch_angle = ss.pitch * degrees_to_radians;
         // this->sss_msg.segway.pitch_rate = ss.pitch_rate * degrees_to_radians;
