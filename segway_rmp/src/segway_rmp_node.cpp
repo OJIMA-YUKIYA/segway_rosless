@@ -207,6 +207,7 @@ public:
         this->obstacle_detected = false;
         this->motors_enabled = false;
         this->recover_motors_enabled = false;
+        this->reset_odometry = false;
     }
 
     ~SegwayRMPNode() {
