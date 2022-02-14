@@ -299,7 +299,7 @@ public:
         // this->odometry_reset_start_time = ros::Time::now();
 
         boost::thread th_momo_serial_read(&SegwayRMPNode::momo_serial_read, this);
-        boost::thread th_hoge(&SegwayRMPNode::hoge, this);
+        // boost::thread th_hoge(&SegwayRMPNode::hoge, this);
 
         this->connected = false;
         while (true) {
@@ -488,6 +488,7 @@ public:
                     if (this->obstacle_detected) {
                         this->lin = 0;
                     }
+                    printf("%lf, %lf\n", this->ang, this->lin);
                     this->segway_rmp->move(this->lin, this->ang); // add offset 0.03
                 } catch (std::exception& e) {
                     std::string e_msg(e.what());
