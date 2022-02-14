@@ -228,7 +228,7 @@ public:
                     0
                 };
                 int read_size = read(fd_read, buf_ptr, req_size);
-                // printf("read %d byte: %08x\n", read_size, buf_ptr[0]);
+                printf("read %d byte: %08x\n", read_size, buf_ptr[0]);
                 if (read_size == 4) {
                     if ((buf_ptr[0] & 0xffff0000) == 0x43000000) {
                         this->ang = 50*(int8_t)((buf_ptr[0] & 0x0000ff00) >> 8) /127.0;
@@ -265,7 +265,7 @@ public:
 
     void hoge() {
         while (true) {
-            printf("%lf, %lf\n", this->ang, this->lin);
+            // printf("%lf, %lf\n", this->ang, this->lin);
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
         return;
@@ -659,7 +659,7 @@ public:
         // }
         //
         this->linear_vel_feedback = (ss.left_wheel_speed + ss.right_wheel_speed) / 2.0;
-        printf("%lf\n", this->linear_vel_feedback);
+        // printf("%lf\n", this->linear_vel_feedback);
         //
         // this->sss_msg.segway.pitch_angle = ss.pitch * degrees_to_radians;
         // this->sss_msg.segway.pitch_rate = ss.pitch_rate * degrees_to_radians;
