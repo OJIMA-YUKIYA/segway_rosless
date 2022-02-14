@@ -303,6 +303,7 @@ public:
         // boost::thread th_keep_alive_callback(&SegwayRMPNode::keep_alive_callback, this);
         // boost::thread th_hoge(&SegwayRMPNode::hoge, this);
 
+        this->reset_odometry = false;
         this->connected = false;
         while (true) {
             try {
