@@ -237,6 +237,8 @@ public:
                         // this->lin = 1.0*(int8_t)(buf_ptr[0] & 0x000000ff)/127.0;
                         this->ang = 50*(int8_t)buf_ptr[2] /127.0;
                         this->lin = 1.0*(int8_t)buf_ptr[3] /127.0;
+                        this->latch = 3;
+                        this->jyja_arrival_time = std::chrono::system_clock::now();
                     }
                     else if ((buf_ptr[0] & 0xff000000) == 0xab000000) {
                         // segway_rmp::AccelCmd msg;
@@ -466,11 +468,11 @@ public:
                     // }
                 }
                 if (this->latch == 3) {
-                    // if (ros::Time::now() - this->jyja_arrival_time > ros::Duration(0.5)) {
-                    //     this->lin = 0;
-                    //     this->ang = 0;
-                    //     this->latch = 0;
-                    // }
+                    if (std::chrono::system_clock::now() - this->jyja_arrival_time > std::chrono::milliseconds(500)) {
+                        this->lin = 0;
+                        this->ang = 0;
+                        this->latch = 0;
+                    }
                 }
                 else if (this->latch == 1) {
                     // la = this->cv->controller();
@@ -1134,7 +1136,7 @@ private:
 
     int zero_judge;
     // ros::Time joy_arrival_time;
-    // ros::Time jyja_arrival_time;
+    std::chrono::system_clock::time_point jyja_arrival_time;
 
     double target_linear_vel;  // The ideal linear velocity in m/s
     double target_angular_vel; // The ideal angular velocity in deg/s
