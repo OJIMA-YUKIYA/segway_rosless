@@ -224,16 +224,19 @@ public:
         int fd_read = open(SERIAL_PATH, O_RDONLY); // SERIAL_PATH は serialPathConfig.h.in にて定義されている。
         while (true) {
             // if (this->connected) {
-                int req_size = 100*sizeof(int32_t);
-                int32_t buf_ptr[100] = {
+                int req_size = 100*sizeof(uint8_t);
+                uint8_t buf_ptr[100] = {
                     0
                 };
                 int read_size = read(fd_read, buf_ptr, req_size);
+                printf("read %d byte: %02x %02x %02x %02x\n", read_size, buf_ptr[0], buf_ptr[1], buf_ptr[2], buf_ptr[3]);
                 // printf("read %d byte: %08x\n", read_size, buf_ptr[0]);
                 if (read_size == 4) {
-                    if ((buf_ptr[0] & 0xffff0000) == 0x43000000) {
-                        this->ang = 50*(int8_t)((buf_ptr[0] & 0x0000ff00) >> 8) /127.0;
-                        this->lin = 1.0*(int8_t)(buf_ptr[0] & 0x000000ff)/127.0;
+                    if (buf_ptr[0] == 0x43 && buf_ptr[1] == 0x00) {
+                        // this->ang = 50*(int8_t)((buf_ptr[0] & 0x0000ff00) >> 8) /127.0;
+                        // this->lin = 1.0*(int8_t)(buf_ptr[0] & 0x000000ff)/127.0;
+                        this->ang = 50*(int8_t)buf_ptr[2] /127.0;
+                        this->lin = 1.0*(int8_t)buf_ptr[3] /127.0;
                     }
                     else if ((buf_ptr[0] & 0xff000000) == 0xab000000) {
                         // segway_rmp::AccelCmd msg;
